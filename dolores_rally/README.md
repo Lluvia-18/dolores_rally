@@ -28,19 +28,81 @@ Proyecto desarrollado con Flutter y Dart aplicando desarrollo guiado por pruebas
 
 El proyecto sigue el ciclo indicado en el manual: primero se escribe una prueba que falla (rojo), después se implementa el código mínimo para aprobarla (verde) y finalmente se refactoriza sin romper las pruebas.
 
-### 🔴 Fase roja: la prueba falla
+Las capturas rojas se obtuvieron ejecutando cada prueba antes de disponer de su archivo de implementación, en una copia temporal aislada. Las capturas verdes corresponden a la misma prueba ejecutada con la implementación actual. El código del repositorio no se modificó para simular los fallos.
 
-La prueba del radar detectó que el orden interno de las temperaturas no respetaba la regla: al alejarse, la temperatura nunca debe hacerse más caliente. La ejecución terminó con pruebas fallidas, como se esperaba en la fase roja.
+### Ciclo 2 - Geografía y destino
 
-![Terminal durante la fase roja](docs/images/fase-roja-terminal.png)
+La prueba define distancia, rumbo, normalización de ángulos, posición horizontal y el cálculo del punto de destino. En rojo, `geo.dart` todavía no está disponible; en verde, todos los cálculos geográficos cumplen los casos normales y de frontera.
 
-Fallo identificado en `temperaturaPorDistancia`: los valores del `enum Temperatura` estaban ordenados de frío a caliente, mientras la prueba compara índices crecientes conforme aumenta la distancia.
+#### 🔴 Roja
 
-### 🟢 Fase verde: todas las pruebas pasan
+![Prueba roja del ciclo de geografía](docs/images/tdd/geografia-roja.png)
 
-Se corrigió el orden del `enum` para que aumente con la distancia, conservando los mismos umbrales y nombres. También se añadieron los permisos Android necesarios y se actualizaron llamadas obsoletas del SDK.
+#### 🟢 Verde
 
-![Terminal durante la fase verde](docs/images/fase-verde-terminal.png)
+![Prueba verde del ciclo de geografía](docs/images/tdd/geografia-verde.png)
+
+### Ciclo 4 - Apariciones aleatorias
+
+Se comprueba que exista una aparición por personaje, que todas queden dentro del radio permitido, que una semilla repita resultados y que los puntos se distribuyan en todas las direcciones.
+
+#### 🔴 Roja
+
+![Prueba roja del ciclo de apariciones](docs/images/tdd/apariciones-roja.png)
+
+#### 🟢 Verde
+
+![Prueba verde del ciclo de apariciones](docs/images/tdd/apariciones-verde.png)
+
+### Ciclo 5 - Radar y temperatura
+
+Las pruebas verifican la orientación del radar, el alcance y la progresión de frío a caliente. Durante el desarrollo también permitieron detectar y corregir el orden interno del `enum Temperatura`.
+
+#### 🔴 Roja
+
+![Prueba roja del ciclo del radar](docs/images/tdd/radar-roja.png)
+
+#### 🟢 Verde
+
+![Prueba verde del ciclo del radar](docs/images/tdd/radar-verde.png)
+
+### Ciclo 6 - Motor de realidad aumentada
+
+Se valida qué personajes están dentro del campo de visión, su posición horizontal, profundidad, escala, orden de dibujo y el cruce correcto del norte entre 350° y 5°.
+
+#### 🔴 Roja
+
+![Prueba roja del ciclo del motor AR](docs/images/tdd/motor-ar-roja.png)
+
+#### 🟢 Verde
+
+![Prueba verde del ciclo del motor AR](docs/images/tdd/motor-ar-verde.png)
+
+### Ciclo 7 - Reglas de la partida
+
+Las pruebas especifican captura, distancia máxima, puntos, respuestas incorrectas, escape, reaparición, restauración y protección contra capturas duplicadas.
+
+#### 🔴 Roja
+
+![Prueba roja del ciclo de partida](docs/images/tdd/partida-roja.png)
+
+#### 🟢 Verde
+
+![Prueba verde del ciclo de partida](docs/images/tdd/partida-verde.png)
+
+### Ciclo 10 - ViewModel e integración
+
+Se integran fuentes de GPS y brújula, cálculo de elementos visibles, temperatura, captura, persistencia, restauración y mensajes seguros ante errores.
+
+#### 🔴 Roja
+
+![Prueba roja del ciclo del ViewModel](docs/images/tdd/viewmodel-roja.png)
+
+#### 🟢 Verde
+
+![Prueba verde del ciclo del ViewModel](docs/images/tdd/viewmodel-verde.png)
+
+### Estado final
 
 Resultado actual:
 
@@ -104,21 +166,14 @@ Android solicitará los permisos necesarios al abrir el modo real. Si el emulado
 
 ## GitHub
 
-Este directorio todavía no tiene un repositorio Git ni un remoto de GitHub configurado. Para publicarlo por primera vez:
+[Repositorio del proyecto en GitHub](https://github.com/Lluvia-18/dolores_rally)
+
+Para subir estas nuevas evidencias y la actualización del README:
 
 ```bash
-git init
-git add .
-git commit -m "feat: Rally de la Independencia AR con TDD"
-git branch -M main
-git remote add origin https://github.com/TU_USUARIO/dolores-rally.git
-git push -u origin main
-```
-
-Sustituye `TU_USUARIO` por tu usuario real de GitHub y crea antes un repositorio vacío llamado `dolores-rally`. Después puedes reemplazar este párrafo por el enlace definitivo:
-
-```text
-https://github.com/TU_USUARIO/dolores-rally
+git add README.md docs/images/tdd
+git commit -m "docs: agrega evidencias de todas las fases TDD"
+git push origin main
 ```
 
 Una estrategia de commits compatible con el ciclo TDD es:
