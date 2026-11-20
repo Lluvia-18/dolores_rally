@@ -1,189 +1,117 @@
 # Rally de la Independencia AR
 
-Aplicación móvil de realidad aumentada y ubicación para recorrer Dolores Hidalgo mientras se encuentran personajes de la Independencia de México. Incluye radar, indicador de frío o caliente, preguntas históricas, puntuación, álbum coleccionable y un modo de demostración que funciona sin GPS.
+Lluvia Villanueva
 
-Proyecto desarrollado con Flutter y Dart aplicando desarrollo guiado por pruebas (TDD).
+[Repositorio en GitHub](https://github.com/Lluvia-18/dolores_rally)
 
-## Funcionalidades
+## Ronda 0 · Preparar el taller
 
-- Personajes distribuidos alrededor del jugador mediante posiciones reproducibles.
-- Radar circular orientado con la brújula.
-- Indicador de proximidad: helado, frío, tibio, caliente y ardiendo.
-- Captura de personajes a 15 metros o menos.
-- Trivia histórica con puntos, intentos y escape del personaje.
-- Persistencia del progreso y álbum coleccionable.
-- Modo demo para probar el juego sin salir del salón.
-- Mensajes seguros para errores de permisos, GPS y sensores.
+### Paso 0.1 · Proyecto y paquetes
 
-## Tecnologías
+### Paso 0.2 · Estructura del proyecto
 
-- Flutter 3.47.2 y Dart 3.13.2
-- `camera` para la vista de realidad aumentada
-- `geolocator` para la ubicación
-- `flutter_compass` para el rumbo
-- `shared_preferences` para guardar el progreso
-- `flutter_test` para las pruebas automatizadas
+## Ronda 1 · Diseña el juego antes de programarlo
 
-## Desarrollo con TDD
+### Mini documento de diseño
 
-El proyecto sigue el ciclo indicado en el manual: primero se escribe una prueba que falla (rojo), después se implementa el código mínimo para aprobarla (verde) y finalmente se refactoriza sin romper las pruebas.
+Juego de realidad aumentada por ubicación para encontrar personajes de la Independencia en Dolores Hidalgo. Incluye radar, indicador de frío o caliente, trivia histórica, puntos, álbum coleccionable y modo demo.
 
-Las capturas rojas se obtuvieron ejecutando cada prueba antes de disponer de su archivo de implementación, en una copia temporal aislada. Las capturas verdes corresponden a la misma prueba ejecutada con la implementación actual. El código del repositorio no se modificó para simular los fallos.
+## Ronda 2 · Geometría de la Tierra
 
-### Ciclo 2 - Geografía y destino
+### Ciclo 2.1 · ROJO
 
-La prueba define distancia, rumbo, normalización de ángulos, posición horizontal y el cálculo del punto de destino. En rojo, `geo.dart` todavía no está disponible; en verde, todos los cálculos geográficos cumplen los casos normales y de frontera.
+![Fase roja de geometría](docs/images/tdd/vscode/geografia-roja.png)
 
-#### 🔴 Roja
+### Ciclo 2.2 · VERDE
 
-![Prueba roja del ciclo de geografía](docs/images/tdd/geografia-roja.png)
+![Fase verde de geometría](docs/images/tdd/vscode/geografia-verde.png)
 
-#### 🟢 Verde
+## Ronda 3 · Los personajes y sus preguntas
 
-![Prueba verde del ciclo de geografía](docs/images/tdd/geografia-verde.png)
+### Paso 3.1 · Modelo de datos
 
-### Ciclo 4 - Apariciones aleatorias
+### Paso 3.2 · Catálogo de personajes de la Independencia
 
-Se comprueba que exista una aparición por personaje, que todas queden dentro del radio permitido, que una semilla repita resultados y que los puntos se distribuyan en todas las direcciones.
+## Ronda 4 · Esconder personajes: azar que se puede probar
 
-#### 🔴 Roja
+### Ciclo 4.1 · ROJO
 
-![Prueba roja del ciclo de apariciones](docs/images/tdd/apariciones-roja.png)
+![Fase roja de apariciones](docs/images/tdd/vscode/apariciones-roja.png)
 
-#### 🟢 Verde
+### Ciclo 4.2 · VERDE
 
-![Prueba verde del ciclo de apariciones](docs/images/tdd/apariciones-verde.png)
+![Fase verde de apariciones](docs/images/tdd/vscode/apariciones-verde.png)
 
-### Ciclo 5 - Radar y temperatura
+## Ronda 5 · Radar y frío o caliente
 
-Las pruebas verifican la orientación del radar, el alcance y la progresión de frío a caliente. Durante el desarrollo también permitieron detectar y corregir el orden interno del `enum Temperatura`.
+### Ciclo 5.1 · ROJO
 
-#### 🔴 Roja
+![Fase roja del radar](docs/images/tdd/vscode/radar-roja.png)
 
-![Prueba roja del ciclo del radar](docs/images/tdd/radar-roja.png)
+### Ciclo 5.2 · VERDE
 
-#### 🟢 Verde
+![Fase verde del radar](docs/images/tdd/vscode/radar-verde.png)
 
-![Prueba verde del ciclo del radar](docs/images/tdd/radar-verde.png)
+## Ronda 6 · El motor de realidad aumentada
 
-### Ciclo 6 - Motor de realidad aumentada
+### Ciclo 6.1 · ROJO
 
-Se valida qué personajes están dentro del campo de visión, su posición horizontal, profundidad, escala, orden de dibujo y el cruce correcto del norte entre 350° y 5°.
+![Fase roja del motor AR](docs/images/tdd/vscode/motor-ar-roja.png)
 
-#### 🔴 Roja
+### Ciclo 6.2 · VERDE
 
-![Prueba roja del ciclo del motor AR](docs/images/tdd/motor-ar-roja.png)
+![Fase verde del motor AR](docs/images/tdd/vscode/motor-ar-verde.png)
 
-#### 🟢 Verde
+## Ronda 7 · Las reglas del juego
 
-![Prueba verde del ciclo del motor AR](docs/images/tdd/motor-ar-verde.png)
+### Ciclo 7.1 · ROJO
 
-### Ciclo 7 - Reglas de la partida
+![Fase roja de las reglas de partida](docs/images/tdd/vscode/partida-roja.png)
 
-Las pruebas especifican captura, distancia máxima, puntos, respuestas incorrectas, escape, reaparición, restauración y protección contra capturas duplicadas.
+### Ciclo 7.2 · VERDE
 
-#### 🔴 Roja
+![Fase verde de las reglas de partida](docs/images/tdd/vscode/partida-verde.png)
 
-![Prueba roja del ciclo de partida](docs/images/tdd/partida-roja.png)
+## Ronda 8 · Guardar el progreso
 
-#### 🟢 Verde
+### Paso 8.1 · Contrato de almacenamiento
 
-![Prueba verde del ciclo de partida](docs/images/tdd/partida-verde.png)
+### Paso 8.2 · Álbum y persistencia
 
-### Ciclo 10 - ViewModel e integración
+## Ronda 9 · Fuentes de posición y brújula
 
-Se integran fuentes de GPS y brújula, cálculo de elementos visibles, temperatura, captura, persistencia, restauración y mensajes seguros ante errores.
+### Paso 9.1 · Fuentes reales
 
-#### 🔴 Roja
+### Paso 9.2 · Fuentes simuladas para el modo demo
 
-![Prueba roja del ciclo del ViewModel](docs/images/tdd/viewmodel-roja.png)
+## Ronda 10 · El ViewModel del juego
 
-#### 🟢 Verde
+### Ciclo 10.1 · ROJO
 
-![Prueba verde del ciclo del ViewModel](docs/images/tdd/viewmodel-verde.png)
+![Fase roja del ViewModel](docs/images/tdd/vscode/viewmodel-roja.png)
 
-### Estado final
+### Ciclo 10.2 · VERDE
 
-Resultado actual:
+![Fase verde del ViewModel](docs/images/tdd/vscode/viewmodel-verde.png)
+
+## Ronda 11 · Las pantallas
+
+### Paso 11.1 · Fondo de cámara
+
+### Paso 11.2 · Radar
+
+### Paso 11.3 · Pantalla del rally
+
+### Paso 11.4 · Álbum, inicio y main
+
+## Ronda 12 · Prueba de campo, balanceo y seguridad
+
+### Paso 12.1 · Playtesting
+
+### Paso 12.2 · Permisos, privacidad y seguridad
+
+## Resultado final
 
 - 43 pruebas aprobadas.
-- 0 pruebas fallidas.
-- `flutter analyze` sin problemas.
-- APK de depuración compilado e instalado en Android.
-
-## Cobertura funcional de las pruebas
-
-| Archivo | Responsabilidad comprobada |
-| --- | --- |
-| `geo_test.dart` | Distancias, rumbos, destino y cruce del norte |
-| `aparicion_test.dart` | Apariciones, radios y azar reproducible |
-| `radar_test.dart` | Orientación del radar y temperatura por distancia |
-| `motor_ar_test.dart` | Campo de visión, profundidad y escala |
-| `partida_test.dart` | Captura, puntos, intentos, escape y restauración |
-| `rally_viewmodel_test.dart` | Integración de sensores, estado, errores y persistencia |
-
-## Estructura del proyecto
-
-```text
-lib/
-├── dominio/       # Reglas del juego escritas en Dart puro
-├── datos/         # GPS, brújula, simuladores y almacenamiento
-├── presentacion/  # ViewModel, cámara, radar y pantallas
-└── main.dart      # Punto de entrada
-test/              # Pruebas automatizadas
-docs/images/       # Evidencias de las fases TDD
-```
-
-## Cómo ejecutar el proyecto
-
-Requisitos: Flutter estable, Android Studio y un emulador o teléfono Android configurado.
-
-```bash
-flutter pub get
-flutter analyze
-flutter test
-flutter run
-```
-
-Para ejecutar en el emulador usado durante el desarrollo:
-
-```bash
-flutter emulators --launch medium_phone
-flutter run -d emulator-5554
-```
-
-El identificador `emulator-5554` puede cambiar. Ejecuta `flutter devices` para consultar el identificador vigente.
-
-## Permisos de Android
-
-El manifiesto ya declara:
-
-- Cámara.
-- Ubicación precisa y aproximada.
-- Cámara y brújula como características opcionales, para permitir el modo demo.
-
-Android solicitará los permisos necesarios al abrir el modo real. Si el emulador no dispone de brújula o ubicación configurada, utiliza el modo demo.
-
-## GitHub
-
-[Repositorio del proyecto en GitHub](https://github.com/Lluvia-18/dolores_rally)
-
-Para subir estas nuevas evidencias y la actualización del README:
-
-```bash
-git add README.md docs/images/tdd
-git commit -m "docs: agrega evidencias de todas las fases TDD"
-git push origin main
-```
-
-Una estrategia de commits compatible con el ciclo TDD es:
-
-```text
-test: agrega prueba de temperatura del radar       # rojo
-fix: corrige progresión de temperatura por distancia # verde
-refactor: limpia radar sin cambiar comportamiento    # refactor
-```
-
-## Nota académica
-
-Los datos históricos y las coordenadas son material de práctica. Antes de usar el juego con estudiantes, deben validarse con fuentes locales como museos, archivos históricos o cronistas de Dolores Hidalgo.
+- Análisis estático sin errores.
+- Aplicación compilada, instalada y ejecutada en Android.
