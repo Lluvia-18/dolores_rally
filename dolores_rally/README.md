@@ -2,7 +2,6 @@
 
 Lluvia Villanueva
 
-[Repositorio en GitHub](https://github.com/Lluvia-18/dolores_rally)
 
 ## Ronda 0 · Preparar el taller
 
@@ -124,8 +123,3 @@ Juego de realidad aumentada por ubicación para encontrar personajes de la Indep
 
 ![Ronda 12 - Permisos y seguridad](docs/images/tdd/vscode-real/ronda-12-seguridad.png)
 
-## Resultado final
-
-- 43 pruebas aprobadas.
-- Análisis estático sin errores.
-- Aplicación compilada, instalada y ejecutada en Android.
